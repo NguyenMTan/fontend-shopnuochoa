@@ -86,7 +86,10 @@ const LoginHomePage = () => {
                     >
                         <div className="animate__animated animate__lightSpeedInLeft flex flex-col items-end">
                             <h2 className="text-white text-[60px]/[60px] font-semibold w-[410px] text-right">
-                                Chào mừng đến với Kewtie
+                                Chào mừng đến với{" "}
+                                <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
+                                    Kewtie
+                                </span>
                             </h2>
                             <p className="text-white mt-10 w-[325px] text-right">
                                 Nếu bạn đã có tài khoản đăng nhập Kewtie, vui
@@ -115,7 +118,10 @@ const LoginHomePage = () => {
                     >
                         <div className="animate__animated animate__rollIn">
                             <h2 className="text-white text-[60px]/[60px] font-semibold w-[410px]">
-                                Chào mừng đến với Kewtie
+                                Chào mừng đến với{" "}
+                                <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 to-green-500">
+                                    Kewtie
+                                </span>
                             </h2>
                             <p className="text-white mt-10 w-[325px]">
                                 Nếu bạn chưa có tài khoản đăng nhập Kewtie, vui

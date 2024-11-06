@@ -14,6 +14,7 @@ import { useFormBlog } from "@/hooks/query-blogs/useFormCreateBlog";
 import { useGetBlog } from "@/hooks/query-blogs/useGetBlog";
 import { useUpdateBlog } from "@/hooks/query-blogs/useUpdateBlog";
 import { useUpdateImageBlog } from "@/hooks/query-blogs/useUpdateImageBlog";
+import { useGetMeUser } from "@/hooks/query-users/useGetMeUser";
 import useToastMessage from "@/hooks/useToastMessage";
 import { ChangeEvent, useEffect, useState } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
@@ -28,6 +29,7 @@ function UpdateBlogPage() {
     const { toastLoading } = useToastMessage();
     const mutationImage = useUpdateImageBlog();
     const [image, setImage] = useState<File>();
+    const { data: user } = useGetMeUser();
 
     const handleUpdateBlog = (data: z.infer<typeof formSchema>) => {
         toastLoading("Vui lòng đợi");
@@ -45,9 +47,14 @@ function UpdateBlogPage() {
         if (blog) {
             form.setValue("title", blog.title ?? "");
             form.setValue("content", blog.content ?? "");
-            form.setValue("created_by", blog.created_by ?? "");
         }
     }, [blog]);
+
+    useEffect(() => {
+        if (user) {
+            form.setValue("created_by", user.name ?? "");
+        }
+    }, [user]);
 
     return (
         <div className="flex flex-col gap-4 ">
@@ -97,10 +104,7 @@ function UpdateBlogPage() {
                                     <FormItem>
                                         <FormLabel>Tên người tạo:</FormLabel>
                                         <FormControl>
-                                            <Input
-                                                placeholder="người tạo"
-                                                {...field}
-                                            />
+                                            <Input disabled {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>

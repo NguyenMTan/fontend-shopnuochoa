@@ -12,8 +12,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useCreateBlog } from "@/hooks/query-blogs/useCreateBlog";
 import { useFormBlog } from "@/hooks/query-blogs/useFormCreateBlog";
+import { useGetMeUser } from "@/hooks/query-users/useGetMeUser";
 import useToastMessage from "@/hooks/useToastMessage";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { z } from "zod";
@@ -23,11 +24,18 @@ function CreateBlogPage() {
     const [image, setImage] = useState<File | null>(null);
     const { form, formSchema } = useFormBlog();
     const { toastLoading } = useToastMessage();
+    const { data: user } = useGetMeUser();
 
     const handleCreateBlog = (data: z.infer<typeof formSchema>) => {
         toastLoading("Vui lòng đợi");
         mutation.mutate({ ...data, main_image: image });
     };
+
+    useEffect(() => {
+        if (user) {
+            form.setValue("created_by", user.name ?? "");
+        }
+    }, [user]);
 
     function hanldeImage(e: ChangeEvent<HTMLInputElement>) {
         const file = e.target.files?.[0];
@@ -83,10 +91,7 @@ function CreateBlogPage() {
                                     <FormItem>
                                         <FormLabel>Tên người viết:</FormLabel>
                                         <FormControl>
-                                            <Input
-                                                placeholder="Người viết"
-                                                {...field}
-                                            />
+                                            <Input disabled {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>

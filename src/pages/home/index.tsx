@@ -54,7 +54,7 @@ function HomePage() {
                                     </p>
                                 </button>
                             </Link>
-                            <Link to={"/products"}>
+                            <Link to={"/contact"}>
                                 <p className="font-semibold text-white text-[18px]/[30px] hover:underline">
                                     hoặc liên hệ Kewtie
                                 </p>

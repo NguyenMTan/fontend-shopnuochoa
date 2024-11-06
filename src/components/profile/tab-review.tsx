@@ -30,7 +30,7 @@ function TabReview(props: TabReviewProps) {
     return (
         <TabsContent
             value={props.value}
-            className="flex flex-col items-center gap-2 w-full max-h-[465px] overflow-scroll"
+            className="flex flex-col items-center gap-2 w-full max-h-[455px]"
         >
             <Table className="border">
                 <TableHeader className="bg-black sticky top-0">
