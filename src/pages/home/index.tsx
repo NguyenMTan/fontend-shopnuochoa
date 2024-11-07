@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import { useGetAllBlogs } from "@/hooks/query-blogs/useGetAllBlogs";
+import ChatBox from "@/components/chatbox";
 
 function HomePage() {
     const { data: products } = useGetThreeProducts();
@@ -360,6 +361,7 @@ function HomePage() {
                     </div>
                 </div>
             </div>
+            <ChatBox />
         </>
     );
 }
