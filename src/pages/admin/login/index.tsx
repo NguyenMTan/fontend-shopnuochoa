@@ -104,15 +104,32 @@ const LoginPage = () => {
                                 )}
                             />
                             <div className="ml-auto flex items-center gap-1 font-medium">
-                                Hiện mật khẩu
-                                <Switch
+                                {/* <Switch
                                     checkedIcon={<IoEyeSharp />}
                                     unCheckedIcon={<FaEyeSlash />}
                                     checked={showPassword}
                                     onCheckedChange={() =>
                                         setShowPassword(!showPassword)
                                     }
-                                />
+                                /> */}
+                                <button
+                                    type="button"
+                                    onClick={() =>
+                                        setShowPassword(!showPassword)
+                                    }
+                                >
+                                    {showPassword ? (
+                                        <div className="flex gap-1 items-center">
+                                            <span>Ẩn mật khẩu</span>
+                                            <FaEyeSlash />
+                                        </div>
+                                    ) : (
+                                        <div className="flex gap-1 items-center">
+                                            <span>Hiện mật khẩu</span>
+                                            <IoEyeSharp />
+                                        </div>
+                                    )}
+                                </button>
                             </div>
                             <Button className="hover:opacity-85">
                                 Đăng nhập

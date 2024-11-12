@@ -10,6 +10,7 @@ import { Input } from "./ui/input";
 import { BsSendFill } from "react-icons/bs";
 import { useGetMessages } from "@/hooks/query-chats/useGetMessage";
 import { format } from "date-fns";
+import { ScrollArea } from "./ui/scroll-area";
 
 function ChatBox() {
     const [value, setValue] = useState("");
@@ -17,16 +18,17 @@ function ChatBox() {
     const [show, setShow] = useState(false);
     const [isTyping, setIsTyping] = useState(false);
     const queryClient = useQueryClient();
+    const [resetMes, setResetMes] = useState(false);
     const { data: messages } = useGetMessages(
         me?._id ?? "",
         "6720a9999470082c79a1cba4"
     );
+    const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
     const handleSetValue = (
         e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
     ) => {
         setValue(e.target.value);
-        console.log(e.target.value);
         if (me) {
             chatSocket.emit("typing", me._id);
         }
@@ -48,14 +50,15 @@ function ChatBox() {
                 message: value,
             });
             setValue("");
+            // queryClient.refetchQueries({ queryKey: ["messages", me._id] });
+            setResetMes(true);
         }
-        queryClient.refetchQueries({ queryKey: ["messages"] });
     };
 
     useEffect(() => {
         const refetchChat = (data: Message) => {
+            queryClient.refetchQueries({ queryKey: ["messages", me._id] });
             if (data.receiver.id == me?._id) {
-                queryClient.refetchQueries({ queryKey: ["messages"] });
                 setIsTyping(false);
             }
         };
@@ -68,11 +71,19 @@ function ChatBox() {
         chatSocket.on("receive-messages", refetchChat);
         chatSocket.on("typing", typingChat);
 
+        setResetMes(false);
+
         return () => {
             chatSocket.off("receive-messages", refetchChat);
             chatSocket.off("typing", typingChat);
         };
-    }, [me]);
+    }, [resetMes == true]);
+
+    // useEffect(() => {
+    //     if (messagesEndRef.current) {
+    //         messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    //     }
+    // }, [messages]);
 
     return (
         <div className="sticky min-h-20 bottom-5 ">
@@ -90,10 +101,14 @@ function ChatBox() {
                     </button>
                 </div>
                 <div className="flex flex-col gap-1 items-end w-full h-[75%] p-3 overflow-y-scroll">
-                    {messages?.messages.map((message) => (
+                    {messages?.messages?.map((message) => (
                         <div
                             key={message._id}
-                            className=" text-white p-2 inline-block bg-black rounded-lg text-right"
+                            className={`${
+                                me?._id === message.receiver.id
+                                    ? "self-start border"
+                                    : "self-end bg-black text-white"
+                            } p-2 inline-block  rounded-lg `}
                         >
                             <p>{message.message}</p>
                             <p className="text-[10px]">
@@ -101,6 +116,7 @@ function ChatBox() {
                             </p>
                         </div>
                     ))}
+                    <div ref={messagesEndRef} />
                 </div>
                 <div className="flex justify-between h-[14%] border-t border-gray-400 p-[10px]">
                     <Input
@@ -116,12 +132,14 @@ function ChatBox() {
                     </button>
                 </div>
             </div>
-            <button
-                onClick={() => setShow(!show)}
-                className="absolute bottom-0 right-16 p-4 rounded-full bg-black border border-white"
-            >
-                <FaMessage className="text-white" size={28} />
-            </button>
+            {me && (
+                <button
+                    onClick={() => setShow(!show)}
+                    className="absolute bottom-0 right-16 p-4 rounded-full bg-black border border-white"
+                >
+                    <FaMessage className="text-white" size={28} />
+                </button>
+            )}
         </div>
     );
 }

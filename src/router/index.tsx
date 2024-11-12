@@ -29,6 +29,7 @@ import BlogHomePage from "@/pages/home/blog";
 import BlogDetailPage from "@/pages/home/blog/detail";
 import UpdateBlogPage from "@/pages/admin/blogs/update";
 import ContactPage from "@/pages/home/contact";
+import ChatPage from "@/pages/admin/chats";
 
 const router = createBrowserRouter([
     {
@@ -100,6 +101,7 @@ const router = createBrowserRouter([
                 path: "/admin",
                 element: <DashBoardPage />,
             },
+            { path: "/admin/chats", element: <ChatPage /> },
             {
                 path: "/admin/blogs",
                 element: <BlogsPage />,

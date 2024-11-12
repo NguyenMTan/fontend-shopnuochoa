@@ -4,7 +4,7 @@ import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import logoBlack from "@/assets/kewtie-black.png";
 import { GoChevronLeft, GoChevronRight } from "react-icons/go";
 import { useState } from "react";
-import { RiHome2Fill } from "react-icons/ri";
+import { RiHome2Fill, RiMessage2Fill } from "react-icons/ri";
 import { FaTags, FaUsers } from "react-icons/fa6";
 import { GiDelicatePerfume } from "react-icons/gi";
 import { IoNewspaperSharp, IoPeople } from "react-icons/io5";
@@ -51,6 +51,11 @@ const menuItems = [
         title: "Bài viết",
         icon: <IoNewspaperSharp className="h-5 w-5" />,
         link: "/admin/blogs",
+    },
+    {
+        title: "Tin nhắn",
+        icon: <RiMessage2Fill className="h-5 w-5" />,
+        link: "/admin/chats",
     },
 ];
 
