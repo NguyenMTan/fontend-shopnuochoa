@@ -6,6 +6,7 @@ export type Order = {
     address: string;
     phone_number: string;
     email: string;
+    status: string;
     delivery: string;
     total: number;
     product_cost: number;

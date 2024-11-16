@@ -41,7 +41,7 @@ function TabOrder(props: TabOrderProps) {
                     <TableHeader className="bg-black sticky top-0">
                         <TableRow className="">
                             <TableHead className="text-white ">
-                                Mã hoá đơn
+                                Trạng thái đơn hàng
                             </TableHead>
                             <TableHead className="text-white">
                                 Địa chỉ
@@ -62,10 +62,29 @@ function TabOrder(props: TabOrderProps) {
                             <TableRow
                                 onClick={() => handleModalDetail(item._id)}
                                 key={item._id}
-                                className="cursor-pointer hover:bg-yellow-300 active:bg-yellow-500"
+                                className={`cursor-pointer hover:bg-gray-300 active:bg-gray-400`}
                             >
                                 <TableCell className="font-medium">
-                                    {item._id}
+                                    {item.status === "waiting" && (
+                                        <div className="bg-gray-200 p-1 flex justify-center items-center rounded-full w-[70%]">
+                                            Chờ xác nhận
+                                        </div>
+                                    )}
+                                    {item.status === "shipping" && (
+                                        <div className="bg-yellow-300 p-1 flex justify-center items-center rounded-full w-[70%]">
+                                            Đang giao
+                                        </div>
+                                    )}
+                                    {item.status === "success" && (
+                                        <div className="bg-green-300 p-1 flex justify-center items-center rounded-full w-[70%]">
+                                            Giao thành công
+                                        </div>
+                                    )}
+                                    {item.status === "false" && (
+                                        <div className="bg-red-300 p-1 flex justify-center items-center rounded-full w-[70%]">
+                                            Giao thất bại
+                                        </div>
+                                    )}
                                 </TableCell>
                                 <TableCell>{item.address}</TableCell>
                                 <TableCell>{item.phone_number}</TableCell>

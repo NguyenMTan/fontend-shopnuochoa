@@ -4,3 +4,13 @@ export type Report = {
     orders_count: number;
     date: string;
 };
+
+export type ReportCustomer = {
+    customer_used: number;
+    customer_register: number;
+};
+
+export type ReportOrder = {
+    status: string;
+    order_count: number;
+};
