@@ -168,3 +168,13 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
+body {
+    cursor: url("./assets/arrowhead-rounded-outline.svg"), auto;
+}
+
+button,
+a,
+Button {
+    cursor: url("./assets/hand-pointer.svg"), pointer;
+}

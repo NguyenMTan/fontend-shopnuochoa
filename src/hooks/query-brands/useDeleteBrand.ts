@@ -14,13 +14,13 @@ export const useDeleteBrand = () => {
             return (await brandsApi.delete(_id)).data;
         },
         onSuccess: (response) => {
-            toastSuccess("Xoá danh mục thành công");
+            toastSuccess("Xoá thương hiệu thành công");
             queryClient.refetchQueries({ queryKey: ["brands"] });
             queryClient.refetchQueries({ queryKey: ["brands-name"] });
             setModalDelete(false);
         },
         onError: (error: ErrorResponse) => {
-            toastError("Xoá danh mục thất bại");
+            toastError("Xoá thương hiệu thất bại");
             return error;
         },
     });

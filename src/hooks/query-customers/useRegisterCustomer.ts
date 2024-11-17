@@ -17,7 +17,7 @@ export const useRegisterCustomer = () => {
             navigate("/login");
         },
         onError: (error) => {
-            toastError("Name đã tồn tại");
+            toastError("Tài khoản đã tồn tại");
             return error;
         },
     });

@@ -21,7 +21,7 @@ export const useAddCart = () => {
         },
         onSuccess: (data) => {
             queryClient.refetchQueries({ queryKey: ["cart"] });
-            toastSuccess("Cập nhật sản phẩm thành công");
+            toastSuccess("Đã thêm vào giỏ hàng");
         },
         onError: (error: ErrorResponse) => {
             if (error.statusCode == 401) {
@@ -29,7 +29,7 @@ export const useAddCart = () => {
                 navigate("/login");
                 return error;
             }
-            toastError("Cập nhật sản phẩm thất bại");
+            toastError("Thêm vào giỏ hàng thất bại");
             return error;
         },
     });

@@ -14,3 +14,8 @@ export type ReportOrder = {
     status: string;
     order_count: number;
 };
+
+export type ReportTopSell = {
+    name: string;
+    sell_count: number;
+};

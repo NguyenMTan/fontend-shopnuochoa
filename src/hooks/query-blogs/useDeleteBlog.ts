@@ -13,12 +13,12 @@ export const useDeleteBlog = () => {
             return (await blogsApi.deleteOne(id)).data;
         },
         onSuccess: (response) => {
-            toastSuccess("Xoá blog thành công");
+            toastSuccess("Xoá bài viết thành công");
             queryClient.refetchQueries({ queryKey: ["blogs"] });
             setModalDelete(false);
         },
         onError: (error: ErrorResponse) => {
-            toastError("Xoá blog thất bại");
+            toastError("Xoá bài viết thất bại");
             return error;
         },
     });

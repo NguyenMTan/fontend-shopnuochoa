@@ -20,7 +20,11 @@ const useUserLogin = () => {
             navigate("/admin");
         },
         onError: (error: ErrorResponse) => {
-            toastError("Đăng nhập thất bại");
+            if (error.statusCode === 401) {
+                toastError("Sai mật khẩu");
+            } else if (error.statusCode === 404) {
+                toastError("Không tìm thấy email");
+            }
             return error;
         },
     });

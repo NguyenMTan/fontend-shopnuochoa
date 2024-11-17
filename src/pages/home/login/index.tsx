@@ -172,7 +172,6 @@ const LoginHomePage = () => {
                                             <FormControl>
                                                 <Input {...field} />
                                             </FormControl>
-                                            <FormMessage />
                                         </FormItem>
                                     )}
                                 />
@@ -188,7 +187,6 @@ const LoginHomePage = () => {
                                                     type="password"
                                                 />
                                             </FormControl>
-                                            <FormMessage />
                                         </FormItem>
                                     )}
                                 />
@@ -206,7 +204,6 @@ const LoginHomePage = () => {
                                                     type="password"
                                                 />
                                             </FormControl>
-                                            <FormMessage />
                                         </FormItem>
                                     )}
                                 />
@@ -220,7 +217,6 @@ const LoginHomePage = () => {
                                                 <FormControl>
                                                     <Input {...field} />
                                                 </FormControl>
-                                                <FormMessage />
                                             </FormItem>
                                         )}
                                     />
@@ -323,7 +319,6 @@ const LoginHomePage = () => {
                                                     {...field}
                                                 />
                                             </FormControl>
-                                            <FormMessage />
                                         </FormItem>
                                     )}
                                 />
@@ -354,15 +349,24 @@ const LoginHomePage = () => {
                                         </p>
                                     </Link>
                                     <div className="flex gap-2 items-center">
-                                        <span>Hiện mật khẩu</span>
-                                        <Switch
-                                            checkedIcon={<IoEyeSharp />}
-                                            unCheckedIcon={<FaEyeSlash />}
-                                            checked={showPassword}
-                                            onCheckedChange={() =>
+                                        <button
+                                            type="button"
+                                            onClick={() =>
                                                 setShowPassword(!showPassword)
                                             }
-                                        />
+                                        >
+                                            {showPassword ? (
+                                                <div className="flex gap-1 items-center">
+                                                    <span>Ẩn mật khẩu</span>
+                                                    <FaEyeSlash />
+                                                </div>
+                                            ) : (
+                                                <div className="flex gap-1 items-center">
+                                                    <span>Hiện mật khẩu</span>
+                                                    <IoEyeSharp />
+                                                </div>
+                                            )}
+                                        </button>
                                     </div>
                                 </div>
                                 <div className="w-full flex justify-end">

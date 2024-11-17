@@ -22,7 +22,7 @@ const BlogsPage = () => {
     return (
         <>
             <div className="flex flex-col gap-4">
-                <h1 className="text-2xl font-bold">Manager Blogs</h1>
+                <h1 className="text-2xl font-bold">Quản lý bài viết</h1>
                 {isLoading ? (
                     <p>Loading...</p>
                 ) : (
@@ -32,6 +32,7 @@ const BlogsPage = () => {
                         setKeyword={setKeyword}
                         keyword={keyword}
                         link_create="/admin/blogs/create-blog"
+                        size={7}
                     />
                 )}
             </div>

@@ -31,6 +31,7 @@ function ProductsPage() {
                         columns={columns}
                         setKeyword={setKeyword}
                         keyword={keyword}
+                        size={7}
                         link_create="/admin/products/create-product"
                     />
                 )}

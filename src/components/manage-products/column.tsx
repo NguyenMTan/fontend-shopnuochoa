@@ -9,6 +9,7 @@ import { RxCross2 } from "react-icons/rx";
 import { Button } from "../ui/button";
 import { ArrowUpDown } from "lucide-react";
 import { formatNumber, formatPrice } from "@/utils/common";
+import noImage from "@/assets/thumb-no-image.png";
 
 export const columns: ColumnDef<Product>[] = [
     {
@@ -36,7 +37,7 @@ export const columns: ColumnDef<Product>[] = [
             return (
                 <img
                     className="w-10 h-10 object-cover"
-                    src={image_url}
+                    src={image_url === "" ? noImage : image_url}
                     alt=""
                 />
             );

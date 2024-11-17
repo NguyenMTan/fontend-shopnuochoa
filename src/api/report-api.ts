@@ -13,4 +13,8 @@ export const reportsApi = {
         const url = `reports/order/${option}`;
         return axiosClient(false).get(url);
     },
+    getReportTopSell: (option: string) => {
+        const url = `reports/topsell/${option}`;
+        return axiosClient(false).get(url);
+    },
 };

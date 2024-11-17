@@ -13,12 +13,12 @@ export const useCreateReview = () => {
             return (await reviewApi.create(body)).data;
         },
         onSuccess: (response) => {
-            toastSuccess("Tạo danh mục thành công");
+            toastSuccess("Đánh giá thành công");
             queryClient.refetchQueries({ queryKey: ["reviews"] });
             queryClient.refetchQueries({ queryKey: ["reviews-me"] });
         },
         onError: (error: ErrorResponse) => {
-            toastError("Tạo danh mục thất bại");
+            toastError("Đánh giá thất bại");
             return error;
         },
     });

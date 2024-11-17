@@ -14,21 +14,20 @@ function CustomersPage() {
         keyword: debounced,
     });
     return (
-        <>
-            <div className="flex flex-col gap-4">
-                <h1 className="text-2xl font-bold">Manager Customers</h1>
-                {isLoading ? (
-                    <p>Loading...</p>
-                ) : (
-                    <DataTable
-                        data={data?.entities ?? []}
-                        columns={columns}
-                        setKeyword={setKeyword}
-                        keyword={keyword}
-                    />
-                )}
-            </div>
-        </>
+        <div className="flex flex-col gap-4">
+            <h1 className="text-2xl font-bold">Quản lý người dùng</h1>
+            {isLoading ? (
+                <p>Loading...</p>
+            ) : (
+                <DataTable
+                    data={data?.entities ?? []}
+                    columns={columns}
+                    setKeyword={setKeyword}
+                    size={7}
+                    keyword={keyword}
+                />
+            )}
+        </div>
     );
 }
 

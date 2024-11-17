@@ -17,7 +17,7 @@ function OrdersPage() {
     return (
         <>
             <div className="flex flex-col gap-4">
-                <h1 className="text-2xl font-bold">Manager Customers</h1>
+                <h1 className="text-2xl font-bold">Quản lý hóa đơn</h1>
                 {isLoading ? (
                     <p>Loading...</p>
                 ) : (
@@ -26,6 +26,7 @@ function OrdersPage() {
                         columns={columns}
                         setKeyword={setKeyword}
                         keyword={keyword}
+                        size={7}
                     />
                 )}
             </div>

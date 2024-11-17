@@ -6,11 +6,13 @@ import {
     BarChart,
     CartesianGrid,
     Label,
+    LabelList,
     Line,
     LineChart,
     Pie,
     PieChart,
     XAxis,
+    YAxis,
 } from "recharts";
 
 import {
@@ -41,6 +43,7 @@ import { useGetReports } from "@/hooks/query-reports/useGetReports";
 import { TrendingUp } from "lucide-react";
 import { useGetReportCustomers } from "@/hooks/query-reports/useGetReportCustomers";
 import { useGetReportOrders } from "@/hooks/query-reports/useGetReportOrders";
+import { useGetReportSell } from "@/hooks/query-reports/useGetReportSell";
 
 const chartConfig = {
     gross_sales: {
@@ -64,14 +67,21 @@ const chartConfig = {
     order_count: {
         label: "Số đơn",
     },
+    name: {
+        label: "Tên sản phẩm",
+    },
+    sell_count: {
+        label: "Số hóa đơn",
+    },
 } satisfies ChartConfig;
 
 export function DashBoardPage() {
     const [optionDay, setOptionDay] = React.useState("last_7_days");
     const { data: chartData } = useGetReports(optionDay);
     const { data: dataOrder } = useGetReportOrders(optionDay);
+    const { data: dataSell } = useGetReportSell(optionDay);
     const { data: dataCustomer } = useGetReportCustomers();
-    const colors = ["#3498db", "#e74c3c"];
+    const colors = ["#3498db", "#e74c3c", "#0f0", "#fe0", "#f0f"];
 
     const chartDataCustomer = Object.entries(dataCustomer || {}).map(
         ([key, value], index) => ({
@@ -80,6 +90,10 @@ export function DashBoardPage() {
             fill: colors[index % colors.length],
         })
     );
+
+    const chartDataSell = dataSell?.map((item, index) => {
+        return { ...item, fill: colors[index % colors.length] };
+    });
 
     const chartDataOrder = dataOrder?.map((item) => {
         let color;
@@ -379,6 +393,76 @@ export function DashBoardPage() {
                                     />
                                 </Pie>
                             </PieChart>
+                        </ChartContainer>
+                    </CardContent>
+                </Card>
+
+                <Card className="w-[60%] h-70 flex items-center justify-between">
+                    <CardHeader className="w-[30%] self-start">
+                        <CardTitle>Top sản phẩm bán chạy</CardTitle>
+                        <CardDescription>
+                            Top sản phẩm bán chạy trong{" "}
+                            {optionDay === "last_7_days" && "7 ngày qua"}
+                            {optionDay === "last_28_days" && "28 ngày qua"}
+                            {optionDay === "last_year" && "1 năm qua"}
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="w-[70%]">
+                        <ChartContainer
+                            className="h-56 mt-6 px-1 w-full border rounded-md"
+                            config={chartConfig}
+                        >
+                            <BarChart
+                                accessibilityLayer
+                                data={chartDataSell}
+                                layout="vertical"
+                                margin={{
+                                    right: 16,
+                                }}
+                            >
+                                <CartesianGrid horizontal={false} />
+                                <YAxis
+                                    dataKey="name"
+                                    type="category"
+                                    tickLine={false}
+                                    tickMargin={10}
+                                    axisLine={false}
+                                    tickFormatter={(value) => value.slice(0, 3)}
+                                    hide
+                                />
+                                <XAxis
+                                    dataKey="sell_count"
+                                    type="number"
+                                    hide
+                                />
+                                <ChartTooltip
+                                    cursor={false}
+                                    content={
+                                        <ChartTooltipContent indicator="line" />
+                                    }
+                                />
+                                <Bar
+                                    dataKey="sell_count"
+                                    layout="vertical"
+                                    fill="var(--color-desktop)"
+                                    radius={4}
+                                >
+                                    <LabelList
+                                        dataKey="name"
+                                        position="insideLeft"
+                                        offset={8}
+                                        className="fill-[--color-label]"
+                                        fontSize={12}
+                                    />
+                                    <LabelList
+                                        dataKey="sell_count"
+                                        position="right"
+                                        offset={8}
+                                        className="fill-foreground"
+                                        fontSize={12}
+                                    />
+                                </Bar>
+                            </BarChart>
                         </ChartContainer>
                     </CardContent>
                 </Card>

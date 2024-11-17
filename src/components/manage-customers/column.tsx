@@ -6,6 +6,7 @@ import { FaCheck } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import { Button } from "../ui/button";
 import { ArrowUpDown } from "lucide-react";
+import noAvatar from "@/assets/thumb-no-image.png";
 
 export const columns: ColumnDef<Customer>[] = [
     {
@@ -40,14 +41,14 @@ export const columns: ColumnDef<Customer>[] = [
     },
     {
         accessorKey: "image_url",
-        header: "ảnh chính",
+        header: "Ảnh đại diện",
         cell: ({ row }) => {
             const { image_url } = row.original;
 
             return (
                 <img
                     className="w-10 h-10 object-cover"
-                    src={image_url}
+                    src={image_url === "" ? noAvatar : image_url}
                     alt=""
                 />
             );
@@ -55,7 +56,7 @@ export const columns: ColumnDef<Customer>[] = [
     },
     {
         accessorKey: "status",
-        header: "status",
+        header: "Trạng thái",
         cell: ({ cell, row }) => {
             const { _id, status } = row.original;
             const mutation = useUpdateStatusCustomer();

@@ -14,12 +14,12 @@ export const useCreateBlog = () => {
             return (await blogsApi.create(body)).data;
         },
         onSuccess: (data) => {
-            toastSuccess("Tạo blog thành công");
+            toastSuccess("Tạo bài viết thành công");
             queryClient.refetchQueries({ queryKey: ["blogs"] });
             navigate("/admin/blogs");
         },
         onError: (error: any) => {
-            toastError("Tạo blog thất bại");
+            toastError("Tạo bài viết thất bại");
         },
     });
 };

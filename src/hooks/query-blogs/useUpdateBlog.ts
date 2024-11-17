@@ -20,13 +20,13 @@ export const useUpdateBlog = () => {
             return (await blogsApi.updateOne(_id, body)).data;
         },
         onSuccess: (data) => {
-            toastSuccess("Cập nhật blog thành công");
+            toastSuccess("Cập nhật bài viết thành công");
             queryClient.refetchQueries({ queryKey: ["blogs"] });
             queryClient.refetchQueries({ queryKey: ["blog", data._id] });
             navigate("/admin/blogs");
         },
         onError: (error: ErrorResponse) => {
-            toastError("Cập nhật blog thất bại");
+            toastError("Cập nhật bài viết thất bại");
             return error;
         },
     });

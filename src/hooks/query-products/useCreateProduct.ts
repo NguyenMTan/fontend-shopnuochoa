@@ -16,15 +16,11 @@ export const useCreateProduct = () => {
         },
         onSuccess: (data) => {
             queryClient.refetchQueries({ queryKey: ["products"] });
-            toastSuccess("Tạo product thành công");
+            toastSuccess("Tạo sản phẩm thành công");
             navigate("/admin/products");
         },
         onError: (error: ErrorResponse) => {
-            if (error.statusCode === 422) {
-                toastError("Lỗi không thể tạo sản phẩm đã tồn tại");
-            } else {
-                toastError("Tạo thất bại");
-            }
+            toastError("Tạo sản phẩm thất bại");
         },
     });
 };

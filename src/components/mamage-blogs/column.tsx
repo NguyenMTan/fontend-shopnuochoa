@@ -5,12 +5,8 @@ import { ColumnDef } from "@tanstack/react-table";
 
 export const columns: ColumnDef<Blog>[] = [
     {
-        accessorKey: "_id",
-        header: "ID",
-    },
-    {
         accessorKey: "image_url",
-        header: "ảnh chính",
+        header: "Ảnh chính",
         cell: ({ row }) => {
             const { image_url } = row.original;
 
@@ -33,12 +29,12 @@ export const columns: ColumnDef<Blog>[] = [
     },
     {
         accessorKey: "created_by",
-        header: "Người tạo",
+        header: "Người viết",
     },
 
     {
         accessorKey: "",
-        header: "actions",
+        header: "Thao tác",
         cell: ({ cell, row }) => {
             const { _id, title } = row.original;
             const { setModalDelete } = useBlogStore();

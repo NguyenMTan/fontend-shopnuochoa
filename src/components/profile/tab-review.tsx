@@ -53,7 +53,13 @@ function TabReview(props: TabReviewProps) {
                     {reviews?.map((item) => (
                         <TableRow key={item._id}>
                             <TableCell className="font-medium text-[14px]/[14px]">
-                                {item.product_id.name}
+                                {item.product_id === null ? (
+                                    <p className="text-red-500">
+                                        Sản phẩm này đã bị xóa
+                                    </p>
+                                ) : (
+                                    item.product_id.name
+                                )}
                             </TableCell>
                             <TableCell className="line-clamp-3 text-[14px]/[14px]">
                                 {item.comment}

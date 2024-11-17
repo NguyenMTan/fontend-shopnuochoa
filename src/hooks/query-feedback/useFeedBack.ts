@@ -15,10 +15,10 @@ export const useFeedBack = () => {
             return (await feedbackApi.sendFeedBack(data)).data;
         },
         onSuccess: (data) => {
-            toastSuccess("gửi phản hồi thành công");
+            toastSuccess("Gửi phản hồi thành công");
         },
         onError: (error) => {
-            toastError("gửi phân hồi thất bại");
+            toastError("Gửi phân hồi thất bại");
         },
     });
 };

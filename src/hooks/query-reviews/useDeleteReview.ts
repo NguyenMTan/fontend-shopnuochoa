@@ -12,12 +12,12 @@ export const useDeleteReview = () => {
             return (await reviewApi.delete(_id)).data;
         },
         onSuccess: (response) => {
-            toastSuccess("Xoá danh mục thành công");
+            toastSuccess("Xoá đánh giá thành công");
             queryClient.refetchQueries({ queryKey: ["reviews"] });
             queryClient.refetchQueries({ queryKey: ["reviews-me"] });
         },
         onError: (error: ErrorResponse) => {
-            toastError("Xoá danh mục thất bại");
+            toastError("Xoá đánh giá thất bại");
             return error;
         },
     });

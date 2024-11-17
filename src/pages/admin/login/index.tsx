@@ -24,7 +24,7 @@ import { Switch } from "@/components/ui/switch";
 const LoginPage = () => {
     const { form, formSchema } = useFormLogin();
     const mutation = useUserLogin();
-    const { toastLoading, toastError } = useToastMessage();
+    const { toastLoading } = useToastMessage();
     const token = LocalUtils.getLocalToken();
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
@@ -54,8 +54,6 @@ const LoginPage = () => {
                         Đăng nhập
                     </h1>
 
-                    {mutation.error?.statusCode === 404 &&
-                        toastError("Không tìm thấy email")}
                     <Form {...form}>
                         <form
                             autoComplete="off"
@@ -77,7 +75,6 @@ const LoginPage = () => {
                                                 {...field}
                                             />
                                         </FormControl>
-                                        <FormMessage />
                                     </FormItem>
                                 )}
                             />
@@ -104,14 +101,6 @@ const LoginPage = () => {
                                 )}
                             />
                             <div className="ml-auto flex items-center gap-1 font-medium">
-                                {/* <Switch
-                                    checkedIcon={<IoEyeSharp />}
-                                    unCheckedIcon={<FaEyeSlash />}
-                                    checked={showPassword}
-                                    onCheckedChange={() =>
-                                        setShowPassword(!showPassword)
-                                    }
-                                /> */}
                                 <button
                                     type="button"
                                     onClick={() =>
