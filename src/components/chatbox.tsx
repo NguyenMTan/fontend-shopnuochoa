@@ -11,6 +11,7 @@ import { BsSendFill } from "react-icons/bs";
 import { useGetMessages } from "@/hooks/query-chats/useGetMessage";
 import { format } from "date-fns";
 import { ScrollArea } from "./ui/scroll-area";
+import { useGetUserChat } from "@/hooks/query-users/useGetUserChat";
 
 function ChatBox() {
     const [value, setValue] = useState("");
@@ -19,9 +20,10 @@ function ChatBox() {
     const [isTyping, setIsTyping] = useState(false);
     const queryClient = useQueryClient();
     const [resetMes, setResetMes] = useState(false);
+    const { data: userChat } = useGetUserChat();
     const { data: messages } = useGetMessages(
         me?._id ?? "",
-        "6720a9999470082c79a1cba4"
+        userChat?._id ?? ""
     );
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
@@ -43,9 +45,9 @@ function ChatBox() {
                     email: me.email,
                 },
                 receiver: {
-                    id: "6720a9999470082c79a1cba4",
-                    name: "Kewtie",
-                    email: "kewtie@gmail.com",
+                    id: userChat?._id,
+                    name: userChat?.name,
+                    email: userChat?.email,
                 },
                 message: value,
             });
@@ -63,7 +65,7 @@ function ChatBox() {
             }
         };
         const typingChat = (id: string) => {
-            if (id == "6720a9999470082c79a1cba4") {
+            if (id == userChat?._id) {
                 setIsTyping(true);
             }
         };
@@ -86,7 +88,7 @@ function ChatBox() {
     // }, [messages]);
 
     return (
-        <div className="sticky min-h-20 bottom-5 ">
+        <div className="sticky min-h-20 bottom-5">
             <div
                 className={`${
                     show ? "block" : "hidden"

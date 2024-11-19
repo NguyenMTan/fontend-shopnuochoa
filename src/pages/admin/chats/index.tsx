@@ -122,7 +122,7 @@ function ChatPage() {
     }, [select]);
     return (
         <>
-            {me?.role[0] === "ADMIN" ? (
+            {me?.role[0] === "CHAT" ? (
                 <div className="w-full">
                     <h1 className="text-2xl font-bold">Quản lý tin nhắn</h1>
                     <div className="flex justify-between w-full mt-6 h-[500px]">

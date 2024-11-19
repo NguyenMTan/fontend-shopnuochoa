@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
     return (
-        <div className="w-full bg-black mt-10">
+        <div className="w-full bg-black">
             <div className="w-[1170px] flex justify-between mx-auto my-16">
                 <img
                     src={logoBlack}

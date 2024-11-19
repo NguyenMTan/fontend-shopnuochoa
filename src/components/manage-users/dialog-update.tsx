@@ -14,6 +14,14 @@ import { useUpdateUser } from "@/hooks/query-users/useUpdateUser";
 import useToastMessage from "@/hooks/useToastMessage";
 import { useUserStore } from "@/store/useUserStore";
 import { useState } from "react";
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "../ui/select";
 
 export function DialogUpdate() {
     const { modalUpdate, setModalUpdate, _id } = useUserStore();

@@ -72,7 +72,7 @@ export const columns: ColumnDef<User>[] = [
             const { _id, role, email } = row.original;
             const { setModalDelete, setModalUpdate } = useUserStore();
 
-            return !role.includes("ADMIN") ? (
+            return !role.includes("ADMIN") && !role.includes("CHAT") ? (
                 <Actions
                     setModalDelete={setModalDelete}
                     setModalUpdate={setModalUpdate}

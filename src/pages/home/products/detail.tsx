@@ -242,7 +242,7 @@ function ProductDetailPage() {
                                                 ? avataNoImage
                                                 : review.customer_id.image_url
                                         }
-                                        className="h-10 w-10 rounded-full"
+                                        className="h-10 w-10 rounded-full object-cover"
                                         alt=""
                                     />
                                     <h3 className="font-medium">

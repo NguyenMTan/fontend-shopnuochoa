@@ -29,7 +29,7 @@ function CartPage() {
     }
 
     return (
-        <div className="w-full bg-[#eee] min-h-[627px]">
+        <div className="w-full bg-[#eee] min-h-[627px] pb-5">
             <div className="flex justify-between w-[92%] mt-14 mx-auto">
                 <div className="w-[68%] h-full">
                     <h2 className="text-[38px]/[38px] font-medium">Giỏ hàng</h2>

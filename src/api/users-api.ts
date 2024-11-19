@@ -43,4 +43,8 @@ export const usersApi = {
         const url = `/users/${_id}`;
         return axiosClient(true).delete(url);
     },
+    getChat() {
+        const url = `/users/chat`;
+        return axiosClient(false).get(url);
+    },
 };
